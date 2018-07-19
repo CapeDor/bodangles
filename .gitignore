@@ -1,3 +1,4 @@
 
 data\.db
-webserver/__pycache__
+
+webServer/__pycache__/
