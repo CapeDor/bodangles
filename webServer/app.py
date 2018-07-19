@@ -24,24 +24,24 @@ def getHistData(startDate, endDate, tankNum):
     # create lists for each row in the table
     dates = []
     sats = []
-    bypass = []
+    online = []
     floatAlarm = []
     o2Alarm = []
-    solenoid = []
+    pressure = []
     for row in data:
         # append the data in each row to their corresponding list
         dates.append(row[0])
         sats.append(row[1])
-        bypass.append(row[2])
+        online.append(row[2])
         floatAlarm.append(row[3])
         o2Alarm.append(row[4])
-        solenoid.append(row[5])
+        pressure.append(row[5])
     # commit the transaction
     con.commit()
     # close the db connection
     con.close()
     # return all the lists
-    return dates, sats, bypass, floatAlarm, o2Alarm, solenoid
+    return dates, sats, online, floatAlarm, o2Alarm, pressure
 
 # when at the root of the url (this is the overview page)
 @app.route("/")
@@ -60,14 +60,14 @@ def beepBeepLettuce():
         # set tankNum to the iteration of the loop
         tankNum = str(x)
         # retreive data from table for specified start date, end date, and tank number
-        dates, sats, bypass, floatAlarm, o2Alarm, solenoid = getHistData(startDate, endDate, tankNum)
+        dates, sats, online, floatAlarm, o2Alarm, pressure = getHistData(startDate, endDate, tankNum)
         # add the last value of each list to the dictionary with their corresponding keys
         # example entry: tanks[sat0 : 100]
         tanks["sat" + str(x)] = sats[-1]
-        tanks["bypass" + str(x)] = bypass[-1]
+        tanks["online" + str(x)] = online[-1]
         tanks["floatAlarm" + str(x)] = floatAlarm[-1]
         tanks["o2Alarm" + str(x)] = o2Alarm[-1]
-        tanks["solenoid" + str(x)] = solenoid[-1]
+        tanks["pressure" + str(x)] = pressure[-1]
     # return the page 'main.html' along with access to the tanks dictionary
     return render_template("main.html", data = tanks)
 
@@ -91,7 +91,7 @@ def formPost():
     # get the global tankNum
     global tankNum
     # retreive data from table for specified start date, end date, and tank number
-    dates, sats, bypass, floatAlarm, o2Alarm, solenoid = getHistData(startDate, endDate, tankNum)
+    dates, sats, online, floatAlarm, o2Alarm, pressure = getHistData(startDate, endDate, tankNum)
     # set legend to 'Tank x Saturation (%)' where x is the tankNum + 1
     # example string if tankNum were equal to 0: Tank 1 Saturation
     legend = "Tank " + str(int(tankNum) + 1) + " Saturation (%)"
@@ -102,7 +102,7 @@ def formPost():
     maxDate = date.today() + timedelta(1)
     # return 'data.html' with access to allllllll the variables
     # any that have a [-1] are a list and only the last element is being returned
-    return render_template("detail.html", bypass = bypass[-1], floatAlarm = floatAlarm[-1], o2Alarm = o2Alarm[-1], values = values, labels = labels, legend = legend, tankNum = str(int(tankNum) + 1), startDate = startDate, endDate = endDate, maxDate = maxDate, solenoid = solenoid[-1])
+    return render_template("detail.html", online = online[-1], floatAlarm = floatAlarm[-1], o2Alarm = o2Alarm[-1], values = values, labels = labels, legend = legend, tankNum = str(int(tankNum) + 1), startDate = startDate, endDate = endDate, maxDate = maxDate, pressure = pressure[-1])
 
 # do the same as the previous method but automatically set the start and end date rather then getting them from a form
 @app.route("/detail")
@@ -112,11 +112,11 @@ def detail():
     # set endDate to tomorrow
     endDate = str(date.today() + timedelta(1))
     global tankNum
-    dates, sats, bypass, floatAlarm, o2Alarm, solenoid = getHistData(startDate, endDate, tankNum)
+    dates, sats, online, floatAlarm, o2Alarm, pressure = getHistData(startDate, endDate, tankNum)
     legend = "Tank " + str(int(tankNum) + 1) + " Saturation (%)"
     labels = dates
     values = sats
-    return render_template("detail.html", values = values, labels = labels, legend = legend, tankNum = str(int(tankNum) + 1), maxDate = endDate, startDate = startDate, endDate = endDate, bypass = bypass[-1], o2Alarm = o2Alarm[-1], floatAlarm = floatAlarm[-1], solenoid = solenoid[-1])
+    return render_template("detail.html", values = values, labels = labels, legend = legend, tankNum = str(int(tankNum) + 1), maxDate = endDate, startDate = startDate, endDate = endDate, online = online[-1], o2Alarm = o2Alarm[-1], floatAlarm = floatAlarm[-1], pressure = pressure[-1])
 
 if __name__ == "__main__":
     app.run(debug=True)

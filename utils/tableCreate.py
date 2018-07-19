@@ -16,7 +16,7 @@ with con:
     # create string to drop table if it already exists
     sqlDropTable = "DROP TABLE IF EXISTS " + tableName
     # create a string to create a table
-    sqlCreateTable = "CREATE TABLE " + tableName + "(timestamp DATETIME, sat NUMERIC, bypass NUMERIC, floatAlarm NUMERIC, o2Alarm NUMERIC, solenoid NUMERIC)"
+    sqlCreateTable = "CREATE TABLE " + tableName + "(timestamp DATETIME, sat NUMERIC, online NUMERIC, floatAlarm NUMERIC, o2Alarm NUMERIC, pressure NUMERIC)"
     # get the db cursor
     cur = con.cursor()
     # execute the sqlite commands

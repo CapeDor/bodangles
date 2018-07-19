@@ -1,7 +1,7 @@
 import serial, sqlite3, re
 
 # connect to database
-con = sqlite3.connect('/home/merlinq/O2Data/data.db')
+con = sqlite3.connect('/home/merlinq/GitHub/o2-data-display/data.db')
 with con:
     # get the db cursor
     cur = con.cursor()
@@ -41,12 +41,12 @@ while True:
             # set varaibles to the elements in entry[]
             tankNum = entry[0]
             sat = entry[1]
-            bypass = entry[2]
+            online = entry[2]
             floatAlarm = entry[3]
             o2Alarm = entry[4]
-            solenoid = entry[5]
+            pressure = entry[5]
             # create a string to insert vales into the specified table
-            sqlEntry = "INSERT INTO Tank" + tankNum + "Data VALUES(datetime('now', 'localtime'), " + sat + ", " + bypass + ", " + floatAlarm + ", " + o2Alarm + ", " + solenoid.rstrip() + ")"
+            sqlEntry = "INSERT INTO Tank" + tankNum + "Data VALUES(datetime('now', 'localtime'), " + sat + ", " + online + ", " + floatAlarm + ", " + o2Alarm + ", " + pressure.rstrip() + ")"
             print(sqlEntry)
             # actually insert the values into the db
             cur.execute(sqlEntry)
