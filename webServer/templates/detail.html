@@ -19,14 +19,13 @@
         <input type="submit">
     </div>
 </form>
-<div>
-    <p>online = {{online}}</p>
-    <p>float alarm = {{floatAlarm}}</p>
-    <p>O2 alarm = {{o2Alarm}}</p>
-    <p>pressure = {{pressure}}</p>
-</div>
+<br>
+<br>
 <!-- Chart canvas element -->
 <canvas id="o2Chart" width="800" height="600"></canvas>
+<br>
+<br>
+<canvas id="alarmChart" width="800" height="600"></canvas>
 
 <!-- chart.js script -->
 <script>
@@ -40,9 +39,9 @@
         ],
         datasets : [{
             label: "{{legend}}",
-            fill: true,
-            lineTenstion: 0,
-            backgroundColor: "rgba(75, 192, 192, 0.4)",
+            fill: false,
+            cubicInterpolationMode: "monotone",
+            backgroundColor: "rgba(75, 192, 192, 1)",
             borderColor: "rgba(75, 192, 192, 1)",
             borderCapStyle: "butt",
             borderDash: [],
@@ -72,5 +71,66 @@
     var o2Chart = new Chart(ctx, {
         type: "line",
         data: chartData,
+        options: {
+            animation: {
+                duration: 0, // general animation time
+            },
+            hover: {
+                animationDuration: 0, // duration of animations when hovering an item
+            },
+            responsiveAnimationDuration: 0,
+        }
+    });
+</script>
+<script>
+    var ctx = document.getElementById('alarmChart').getContext("2d");
+    
+    var alarmChart = new Chart(ctx, {
+        type: 'line',
+        
+        data: {
+            labels: [
+                {% for item in labels %}
+                "{{item}}",
+                {% endfor %}
+            ],
+            datasets: [{
+                label: "Tank {{ tankNum }} Float Alarm",
+                cubicInterpolationMode: "monotone",
+                pointBorderColor: "rgba(75, 192, 192, .0)",
+                pointBackgroundColor: "rgba(75, 192, 192, .0)",
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                fill: false,
+                data: [
+                    {% for item in floatAlarm %}
+                    "{{item}}",
+                    {% endfor %}
+                ]},
+                {
+                label: "Tank {{ tankNum }} Oxygen Alarm",
+                cubicInterpolationMode: "monotone",
+                pointBorderColor: "rgba(75, 192, 192, .0)",
+                pointBackgroundColor: "rgba(75, 192, 192, .0)",
+                backgroundColor: 'rgb(0, 99, 132)',
+                borderColor: 'rgb(0, 99, 132)',
+                fill: false,
+                data: [
+                    {% for item in o2Alarm %}
+                    "{{item}}",
+                    {% endfor %}
+                ],
+            }]
+        },
+        
+        options: {
+            animation: {
+                duration: 0, // general animation time
+            },
+            hover: {
+                animationDuration: 0, // duration of animations when hovering an item
+            },
+            responsiveAnimationDuration: 0,
+        }
     });
 </script>

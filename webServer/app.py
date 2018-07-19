@@ -102,7 +102,7 @@ def formPost():
     maxDate = date.today() + timedelta(1)
     # return 'data.html' with access to allllllll the variables
     # any that have a [-1] are a list and only the last element is being returned
-    return render_template("detail.html", online = online[-1], floatAlarm = floatAlarm[-1], o2Alarm = o2Alarm[-1], values = values, labels = labels, legend = legend, tankNum = str(int(tankNum) + 1), startDate = startDate, endDate = endDate, maxDate = maxDate, pressure = pressure[-1])
+    return render_template("detail.html", online = online, floatAlarm = floatAlarm, o2Alarm = o2Alarm, values = values, labels = labels, legend = legend, tankNum = str(int(tankNum) + 1), startDate = startDate, endDate = endDate, maxDate = maxDate, pressure = pressure)
 
 # do the same as the previous method but automatically set the start and end date rather then getting them from a form
 @app.route("/detail")
@@ -116,7 +116,7 @@ def detail():
     legend = "Tank " + str(int(tankNum) + 1) + " Saturation (%)"
     labels = dates
     values = sats
-    return render_template("detail.html", values = values, labels = labels, legend = legend, tankNum = str(int(tankNum) + 1), maxDate = endDate, startDate = startDate, endDate = endDate, online = online[-1], o2Alarm = o2Alarm[-1], floatAlarm = floatAlarm[-1], pressure = pressure[-1])
+    return render_template("detail.html", values = values, labels = labels, legend = legend, tankNum = str(int(tankNum) + 1), maxDate = endDate, startDate = startDate, endDate = endDate, online = online, o2Alarm = o2Alarm, floatAlarm = floatAlarm, pressure = pressure)
 
 if __name__ == "__main__":
     app.run(debug=True)
