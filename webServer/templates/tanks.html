@@ -1,0 +1,42 @@
+{%block tank0%}
+    <h1>Tank 1</h1>
+    <p>Saturation = {{data["sat0"]}}</p>
+    <p>Bypass = {{data["bypass0"]}}</p>
+    <p>Float Alarm = {{data["floatAlarm0"]}}</p>
+    <p>O2 Alarm = {{data["o2Alarm0"]}}</p>
+    <p>Solenoid = {{data["solenoid0"]}}</p>
+    <form method="POST">
+        <div>
+            <input type="hidden" name="tankNum" value="0">
+            <input type="submit" value="Show Detail">
+        </div>
+    </form>
+{%endblock%}
+{%block tank1%}
+    <h1>Tank 2</h1>
+    <p>Saturation = {{data["sat1"]}}</p>
+    <p>Bypass = {{data["bypass1"]}}</p>
+    <p>Float Alarm = {{data["floatAlarm1"]}}</p>
+    <p>O2 Alarm = {{data["o2Alarm1"]}}</p>
+    <p>Solenoid = {{data["solenoid1"]}}</p>
+    <form method="POST">
+            <div>
+                <input type="hidden" name="tankNum" value="1">
+                <input type="submit" value="Show Detail">
+            </div>
+        </form>
+{%endblock%}
+{%block tank16%}
+    <h1>Tank 3</h1>
+    <p>Saturation = {{data["sat2"]}}</p>
+    <p>Bypass = {{data["bypass2"]}}</p>
+    <p>Float Alarm = {{data["floatAlarm2"]}}</p>
+    <p>O2 Alarm = {{data["o2Alarm2"]}}</p>
+    <p>Solenoid = {{data["solenoid2"]}}</p>
+    <form method="POST">
+            <div>
+                <input type="hidden" name="tankNum" value="2">
+                <input type="submit" value="Show Detail">
+            </div>
+        </form>
+{%endblock%}

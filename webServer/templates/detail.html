@@ -1,0 +1,76 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8" />
+    <title>O2 Graph</title>
+    <!-- import chart.js -->
+    <script src = "../static/Chart.min.js"></script>
+</head>
+
+<h1>Tank {{ tankNum }}</h1>
+<a href="/">Return to overview</a>
+<br>
+<br>
+<form method="POST">
+    <div>
+        <label for="range">Set date range:</label>
+        <input type="date" name="startDate" id="startDate" value={{startDate}} max={{maxDate}}>
+         to 
+        <input type="date" name="endDate" id="endDate" value={{endDate}} max={{maxDate}}>
+        <input type="submit">
+    </div>
+</form>
+<div>
+    <p>bypass = {{bypass}}</p>
+    <p>float alarm = {{floatAlarm}}</p>
+    <p>O2 alarm = {{o2Alarm}}</p>
+    <p>solenoid = {{solenoid}}</p>
+</div>
+<!-- Chart canvas element -->
+<canvas id="o2Chart" width="800" height="600"></canvas>
+
+<!-- chart.js script -->
+<script>
+    Chart.defaults.global.responsive = false;
+
+    var chartData = {
+        labels : [
+            {% for item in labels %}
+            "{{item}}",
+            {% endfor %}
+        ],
+        datasets : [{
+            label: "{{legend}}",
+            fill: true,
+            lineTenstion: 0,
+            backgroundColor: "rgba(75, 192, 192, 0.4)",
+            borderColor: "rgba(75, 192, 192, 1)",
+            borderCapStyle: "butt",
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: "miter",
+            pointBorderColor: "rgba(75, 192, 192, 1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(75, 192, 192, 1)",
+            pointHoverBorderColor: "rgba(220, 220, 220, 1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data : [
+                {% for item in values %}
+                "{{item}}",
+                {% endfor %}
+            ],
+            spanGaps: false
+        }]
+    }
+    // get chart canvas
+    var ctx = document.getElementById("o2Chart").getContext("2d");
+
+    // create the chart using the chart canvas
+    var o2Chart = new Chart(ctx, {
+        type: "line",
+        data: chartData,
+    });
+</script>

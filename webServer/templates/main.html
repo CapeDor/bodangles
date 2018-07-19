@@ -1,0 +1,17 @@
+<!doctype html>
+<!-- include tanks.html so that its templates can be accessed -->
+{%include "tanks.html"%}
+<head>
+    <meta charset="utf-8" />
+    <!-- auto refresh the page every 15 seconds -->
+    <META HTTP-EQUIV="refresh" CONTENT="15">
+    <!-- title the page -->
+    <title>Overview</title>
+</head>
+
+<body>
+    <!-- create divs for all the templates in tanks.html -->
+    <div class="tank">{%block tank0%}{%endblock%}</div>
+    <div class="tank">{%block tank1%}{%endblock%}</div>
+    <div class="tank">{%block tank2%}{%endblock%}</div>
+</body>
