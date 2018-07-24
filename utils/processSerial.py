@@ -1,7 +1,7 @@
 import serial, sqlite3, re
 
 # connect to database
-con = sqlite3.connect('/home/merlinq/GitHub/o2-data-display/data.db')
+con = sqlite3.connect('../data.db')
 with con:
     # get the db cursor
     cur = con.cursor()

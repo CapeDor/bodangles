@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../static/style.css">
 </head>
 <body>
-    <div class="tank">
+    <div class="tank" {% if data["online0"] == 1 %} style="background: green;" {%else%} style="background: gray;" {%endif%}>
         <h1>Tank 1</h1>
         <p>Saturation = {{data["sat0"]}}%</p>
         <p>online = {{data["online0"]}}</p>
@@ -22,7 +22,7 @@
             </div>
         </form>
     </div>
-    <div class="tank">
+    <div class="tank" {% if data["online1"] == 1 %} style="background: green;" {%else%} style="background: gray;" {%endif%}>
         <h1>Tank 2</h1>
         <p>Saturation = {{data["sat1"]}}%</p>
         <p>online = {{data["online1"]}}</p>
@@ -36,7 +36,7 @@
             </div>
         </form>
     </div>
-    <div class="tank">
+    <div class="tank" {% if data["online2"] == 1 %} style="background: green;" {%else%} style="background: gray;" {%endif%}>
         <h1>Tank 3</h1>
         <p>Saturation = {{data["sat2"]}}%</p>
         <p>online = {{data["online2"]}}</p>
@@ -46,6 +46,215 @@
         <form method="POST">
             <div>
                 <input type="hidden" name="tankNum" value="2">
+                <input class="detailButton" type="submit" value="Show Detail">
+            </div>
+        </form>
+    </div>
+    <div class="tank" {% if data["online3"] == 1 %} style="background: green;" {%else%} style="background: gray;" {%endif%}>
+        <h1>Tank 4</h1>
+        <p>Saturation = {{data["sat3"]}}%</p>
+        <p>online = {{data["online3"]}}</p>
+        <p>Float Alarm = {{data["floatAlarm3"]}}</p>
+        <p>O2 Alarm = {{data["o2Alarm3"]}}</p>
+        <p>pressure = {{data["pressure3"]}}</p>
+        <form method="POST">
+            <div>
+                <input type="hidden" name="tankNum" value="3">
+                <input class="detailButton" type="submit" value="Show Detail">
+            </div>
+        </form>
+    </div>
+    <div class="tank" {% if data["online4"] == 1 %} style="background: green;" {%else%} style="background: gray;" {%endif%}>
+        <h1>Tank 5</h1>
+        <p>Saturation = {{data["sat4"]}}%</p>
+        <p>online = {{data["online4"]}}</p>
+        <p>Float Alarm = {{data["floatAlarm4"]}}</p>
+        <p>O2 Alarm = {{data["o2Alarm4"]}}</p>
+        <p>pressure = {{data["pressure4"]}}</p>
+        <form method="POST">
+            <div>
+                <input type="hidden" name="tankNum" value="4">
+                <input class="detailButton" type="submit" value="Show Detail">
+            </div>
+        </form>
+    </div>
+    <div class="tank" {% if data["online5"] == 1 %} style="background: green;" {%else%} style="background: gray;" {%endif%}>
+        <h1>Tank 6</h1>
+        <p>Saturation = {{data["sat5"]}}%</p>
+        <p>online = {{data["online5"]}}</p>
+        <p>Float Alarm = {{data["floatAlarm5"]}}</p>
+        <p>O2 Alarm = {{data["o2Alarm5"]}}</p>
+        <p>pressure = {{data["pressure5"]}}</p>
+        <form method="POST">
+            <div>
+                <input type="hidden" name="tankNum" value="5">
+                <input class="detailButton" type="submit" value="Show Detail">
+            </div>
+        </form>
+    </div>
+    <div class="tank" {% if data["online6"] == 1 %} style="background: green;" {%else%} style="background: gray;" {%endif%}>
+        <h1>Tank 7</h1>
+        <p>Saturation = {{data["sat6"]}}%</p>
+        <p>online = {{data["online6"]}}</p>
+        <p>Float Alarm = {{data["floatAlarm6"]}}</p>
+        <p>O2 Alarm = {{data["o2Alarm6"]}}</p>
+        <p>pressure = {{data["pressure6"]}}</p>
+        <form method="POST">
+            <div>
+                <input type="hidden" name="tankNum" value="6">
+                <input class="detailButton" type="submit" value="Show Detail">
+            </div>
+        </form>
+    </div>
+    <div class="tank" {% if data["online7"] == 1 %} style="background: green;" {%else%} style="background: gray;" {%endif%}>
+        <h1>Tank 8</h1>
+        <p>Saturation = {{data["sat7"]}}%</p>
+        <p>online = {{data["online7"]}}</p>
+        <p>Float Alarm = {{data["floatAlarm7"]}}</p>
+        <p>O2 Alarm = {{data["o2Alarm7"]}}</p>
+        <p>pressure = {{data["pressure7"]}}</p>
+        <form method="POST">
+            <div>
+                <input type="hidden" name="tankNum" value="7">
+                <input class="detailButton" type="submit" value="Show Detail">
+            </div>
+        </form>
+    </div>
+    <div class="tank" {% if data["online8"] == 1 %} style="background: green;" {%else%} style="background: gray;" {%endif%}>
+        <h1>Tank 9</h1>
+        <p>Saturation = {{data["sat8"]}}%</p>
+        <p>online = {{data["online8"]}}</p>
+        <p>Float Alarm = {{data["floatAlarm8"]}}</p>
+        <p>O2 Alarm = {{data["o2Alarm8"]}}</p>
+        <p>pressure = {{data["pressure8"]}}</p>
+        <form method="POST">
+            <div>
+                <input type="hidden" name="tankNum" value="8">
+                <input class="detailButton" type="submit" value="Show Detail">
+            </div>
+        </form>
+    </div><div class="tank" {% if data["online9"] == 1 %} style="background: green;" {%else%} style="background: gray;" {%endif%}>
+        <h1>Tank 10</h1>
+        <p>Saturation = {{data["sat9"]}}%</p>
+        <p>online = {{data["online9"]}}</p>
+        <p>Float Alarm = {{data["floatAlarm9"]}}</p>
+        <p>O2 Alarm = {{data["o2Alarm9"]}}</p>
+        <p>pressure = {{data["pressure9"]}}</p>
+        <form method="POST">
+            <div>
+                <input type="hidden" name="tankNum" value="9">
+                <input class="detailButton" type="submit" value="Show Detail">
+            </div>
+        </form>
+    </div>
+    <div class="tank" {% if data["online10"] == 1 %} style="background: green;" {%else%} style="background: gray;" {%endif%}>
+        <h1>Tank 11</h1>
+        <p>Saturation = {{data["sat10"]}}%</p>
+        <p>online = {{data["online10"]}}</p>
+        <p>Float Alarm = {{data["floatAlarm10"]}}</p>
+        <p>O2 Alarm = {{data["o2Alarm10"]}}</p>
+        <p>pressure = {{data["pressure10"]}}</p>
+        <form method="POST">
+            <div>
+                <input type="hidden" name="tankNum" value="10">
+                <input class="detailButton" type="submit" value="Show Detail">
+            </div>
+        </form>
+    </div>
+    <div class="tank" {% if data["online11"] == 1 %} style="background: green;" {%else%} style="background: gray;" {%endif%}>
+        <h1>Tank 12</h1>
+        <p>Saturation = {{data["sat11"]}}%</p>
+        <p>online = {{data["online11"]}}</p>
+        <p>Float Alarm = {{data["floatAlarm11"]}}</p>
+        <p>O2 Alarm = {{data["o2Alarm11"]}}</p>
+        <p>pressure = {{data["pressure11"]}}</p>
+        <form method="POST">
+            <div>
+                <input type="hidden" name="tankNum" value="11">
+                <input class="detailButton" type="submit" value="Show Detail">
+            </div>
+        </form>
+    </div>
+    <div class="tank" {% if data["online12"] == 1 %} style="background: green;" {%else%} style="background: gray;" {%endif%}>
+        <h1>Tank 13</h1>
+        <p>Saturation = {{data["sat12"]}}%</p>
+        <p>online = {{data["online12"]}}</p>
+        <p>Float Alarm = {{data["floatAlarm12"]}}</p>
+        <p>O2 Alarm = {{data["o2Alarm12"]}}</p>
+        <p>pressure = {{data["pressure12"]}}</p>
+        <form method="POST">
+            <div>
+                <input type="hidden" name="tankNum" value="12">
+                <input class="detailButton" type="submit" value="Show Detail">
+            </div>
+        </form>
+    </div>
+    <div class="tank" {% if data["online13"] == 1 %} style="background: green;" {%else%} style="background: gray;" {%endif%}>
+        <h1>Tank 14</h1>
+        <p>Saturation = {{data["sat13"]}}%</p>
+        <p>online = {{data["online13"]}}</p>
+        <p>Float Alarm = {{data["floatAlarm13"]}}</p>
+        <p>O2 Alarm = {{data["o2Alarm13"]}}</p>
+        <p>pressure = {{data["pressure13"]}}</p>
+        <form method="POST">
+            <div>
+                <input type="hidden" name="tankNum" value="13">
+                <input class="detailButton" type="submit" value="Show Detail">
+            </div>
+        </form>
+    </div>
+    <div class="tank" {% if data["online14"] == 1 %} style="background: green;" {%else%} style="background: gray;" {%endif%}>
+        <h1>Tank 15</h1>
+        <p>Saturation = {{data["sat14"]}}%</p>
+        <p>online = {{data["online14"]}}</p>
+        <p>Float Alarm = {{data["floatAlarm14"]}}</p>
+        <p>O2 Alarm = {{data["o2Alarm14"]}}</p>
+        <p>pressure = {{data["pressure14"]}}</p>
+        <form method="POST">
+            <div>
+                <input type="hidden" name="tankNum" value="14">
+                <input class="detailButton" type="submit" value="Show Detail">
+            </div>
+        </form>
+    </div>
+    <div class="tank" {% if data["online15"] == 1 %} style="background: green;" {%else%} style="background: gray;" {%endif%}>
+        <h1>Tank 16</h1>
+        <p>Saturation = {{data["sat15"]}}%</p>
+        <p>online = {{data["online15"]}}</p>
+        <p>Float Alarm = {{data["floatAlarm15"]}}</p>
+        <p>O2 Alarm = {{data["o2Alarm15"]}}</p>
+        <p>pressure = {{data["pressure16"]}}</p>
+        <form method="POST">
+            <div>
+                <input type="hidden" name="tankNum" value="16">
+                <input class="detailButton" type="submit" value="Show Detail">
+            </div>
+        </form>
+    </div>
+    <div class="tank" {% if data["online16"] == 1 %} style="background: green;" {%else%} style="background: gray;" {%endif%}>
+        <h1>Tank 17</h1>
+        <p>Saturation = {{data["sat16"]}}%</p>
+        <p>online = {{data["online16"]}}</p>
+        <p>Float Alarm = {{data["floatAlarm16"]}}</p>
+        <p>O2 Alarm = {{data["o2Alarm16"]}}</p>
+        <p>pressure = {{data["pressure16"]}}</p>
+        <form method="POST">
+            <div>
+                <input type="hidden" name="tankNum" value="16">
+                <input class="detailButton" type="submit" value="Show Detail">
+            </div>
+        </form>
+    </div>
+    <div class="tank" {% if data["online17"] == 1 %} style="background: green;" {%else%} style="background: gray;" {%endif%}>
+        <h1>Tank 18</h1>
+        <p>Saturation = {{data["sat17"]}}%</p>
+        <p>online = {{data["online17"]}}</p>
+        <p>Float Alarm = {{data["floatAlarm17"]}}</p>
+        <p>O2 Alarm = {{data["o2Alarm17"]}}</p>
+        <p>pressure = {{data["pressure17"]}}</p>
+        <form method="POST">
+            <div>
+                <input type="hidden" name="tankNum" value="17">
                 <input class="detailButton" type="submit" value="Show Detail">
             </div>
         </form>

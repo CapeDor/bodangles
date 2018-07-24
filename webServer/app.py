@@ -7,7 +7,7 @@ app = Flask(__name__)
 # create a global variable for the tank number that defaults to 0
 tankNum = "0"
 # create global variable for the number of tables in the db
-numTables = 1
+numTables = 18
 
 # method to get date from the db
 def getHistData(startDate, endDate, tankNum):

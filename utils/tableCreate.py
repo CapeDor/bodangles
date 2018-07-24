@@ -9,7 +9,7 @@ def getInput():
     return tableName
 
 # connect to the sqlite database
-con = sqlite3.connect('/home/merlinq/O2Data/data.db')
+con = sqlite3.connect('../data.db')
 with con:
     # call getInput() to get the name of the table to be created
     tableName = getInput()
