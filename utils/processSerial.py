@@ -1,4 +1,4 @@
-import serial, sqlite3, re, pygame
+import  serial, sqlite3, re, pygame
 
 # connect to database
 con = sqlite3.connect('../data.db')
@@ -17,6 +17,7 @@ def BEEEEOP():
     pygame.mixer.init()
     pygame.mixer.music.load("beepBeepLettuce.ogg")
     pygame.mixer.music.play()
+    print("REEEEEEEE!")
     while pygame.mixer.music.get_busy() == True:
         continue
     try:
@@ -41,34 +42,42 @@ except:
     BEEEEOP()
 # initialize an empty list named data
 data = []
+reee = []
 # initialize tableCount to the number of tables in the db
 tableCount = superConverter(count)
-# infinite loop LAMO
-while True:
-    # read from serial until a '\n' and store it in line
-    line = ser.readline()
-    # decode the serial input to utf-8
-    dec = line.decode('utf-8')
-    # append the serial input into data[] and seperate the input by commas
-    data.append(dec.split(","))
-    if(len(data) == tableCount):
-        # for every element in data[]
-        for entry in data:
-            # set varaibles to the elements in entry[]
-            tankNum = entry[0]
-            sat = entry[1]
-            online = entry[2]
-            floatAlarm = entry[3]
-            o2Alarm = entry[4]
-            pressure = entry[5]
-            # create a string to insert vales into the specified table
-            sqlEntry = "INSERT INTO Tank" + tankNum + "Data VALUES(datetime('now', 'localtime'), " + sat + ", " + online + ", " + floatAlarm + ", " + o2Alarm + ", " + pressure.rstrip() + ")"
-            print(sqlEntry)
-            if o2Alarm == 1 or floatAlarm == 1:
-                BEEEEOP()
-            # actually insert the values into the db
-            cur.execute(sqlEntry)
-            # commit the transaction
-            con.commit()
-        # reset data[] to empty
-        data = []
+if ser != None:
+    while ser.isOpen():
+        print(ser)
+        # read from serial until a '\n' and store it in line
+        line = ser.readline()
+        # decode the serial input to utf-8
+        dec = line.decode('utf-8')
+        # append the serial input into data[] and seperate the input by commas
+        data.append(dec.split(","))
+        if(len(data) == tableCount):
+            # for every element in data[]
+            for entry in data:
+                # set varaibles to the elements in entry[]
+                tankNum = entry[0]
+                sat = entry[1]
+                online = entry[2]
+                floatAlarm = entry[3]
+                o2Alarm = entry[4]
+                pressure = entry[5]
+                reee.append(entry[3])
+                # create a string to insert vales into the specified table
+                sqlEntry = "INSERT INTO Tank" + tankNum + "Data VALUES(datetime('now', 'localtime'), " + sat + ", " + online + ", " + floatAlarm + ", " + o2Alarm + ", " + pressure.rstrip() + ")"
+                print(sqlEntry)
+                #print(reee)
+                for num in reee:
+                    if num == 1:
+                        #BEEEEOP()
+                        print("ASDUAISFA")
+                # actually insert the values into the db
+                cur.execute(sqlEntry)
+                # commit the transaction
+                con.commit()
+            # reset data[] to empty
+            data = []
+if ser == None:
+    print("closed")
