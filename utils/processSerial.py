@@ -1,7 +1,8 @@
-import serial, sqlite3, re
+import serial, sqlite3, re, pygame
 
 # connect to database
 con = sqlite3.connect('../data.db')
+ser = None
 with con:
     # get the db cursor
     cur = con.cursor()
@@ -10,6 +11,18 @@ with con:
     cur.execute("SELECT count(*) FROM sqlite_master WHERE type = 'table'")
     # assign the table count to a variable
     count = cur.fetchall()
+
+def BEEEEOP():
+    global ser
+    pygame.mixer.init()
+    pygame.mixer.music.load("beepBeepLettuce.ogg")
+    pygame.mixer.music.play()
+    while pygame.mixer.music.get_busy() == True:
+        continue
+    try:
+        ser = serial.Serial('/dev/ttyACM0', 9600, timeout=61)
+    except:
+        BEEEEOP()
 
 def superConverter(count):
     #convert the first element of the list to a string
@@ -22,7 +35,10 @@ def superConverter(count):
     return(int(count[0]))
 
 # open a serial port with a baudrate of 9600 and a timeout of 61 seconds
-ser = serial.Serial('/dev/ttyACM0', 9600, timeout=61)
+try:
+    ser = serial.Serial('/dev/ttyACM0', 9600, timeout=61)
+except:
+    BEEEEOP()
 # initialize an empty list named data
 data = []
 # initialize tableCount to the number of tables in the db
@@ -48,6 +64,8 @@ while True:
             # create a string to insert vales into the specified table
             sqlEntry = "INSERT INTO Tank" + tankNum + "Data VALUES(datetime('now', 'localtime'), " + sat + ", " + online + ", " + floatAlarm + ", " + o2Alarm + ", " + pressure.rstrip() + ")"
             print(sqlEntry)
+            if o2Alarm == 1 or floatAlarm == 1:
+                BEEEEOP()
             # actually insert the values into the db
             cur.execute(sqlEntry)
             # commit the transaction

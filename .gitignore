@@ -2,3 +2,5 @@
 data\.db
 
 webServer/__pycache__/
+
+\.vscode/
