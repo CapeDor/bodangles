@@ -1,12 +1,12 @@
 html {
-    background-color: #212127 !important;
+    background-color: white !important;
 }
 html, body, input, textarea, select, button {
-    background-color: #212127;
+    background-color: white;
 }
 html, body, input, textarea, select, button {
     border-color: #5e5d5a;
-    color: #e9e3d5;
+    color: black;
 }
 a {
     color: #446be4;

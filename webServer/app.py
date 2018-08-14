@@ -119,4 +119,4 @@ def detail():
     return render_template("detail.html", values = values, labels = labels, legend = legend, tankNum = str(int(tankNum) + 1), maxDate = endDate, startDate = startDate, endDate = endDate, online = online, o2Alarm = o2Alarm, floatAlarm = floatAlarm, pressure = pressure)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
