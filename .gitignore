@@ -4,3 +4,7 @@ data\.db
 webServer/__pycache__/
 
 \.vscode/
+
+venv/
+
+o2-data-display/

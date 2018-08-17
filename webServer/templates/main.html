@@ -6,10 +6,13 @@
     <!-- title the page -->
     <title>Overview</title>
     <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
 </head>
 <body>
     <div class="tank" {% if data["floatAlarm0"] or data["o2Alarm0"] %} style="background: red;" {%elif data["online0"] == 1 %} style="background: green;" {%else%} style="background: #40464e;" {%endif%}>
-        <h1>Tank 1</h1>
+        <h1>Tank 16</h1>
         <p>Saturation = {{data["sat0"]}}%</p>
         <p>Online = {{data["online0"]}}</p>
         <p>Float Alarm = {{data["floatAlarm0"]}}</p>
@@ -23,7 +26,7 @@
         </form>
     </div>
     <div class="tank" {% if data["floatAlarm1"] or data["o2Alarm1"] %} style="background: red;" {%elif data["online1"] == 1 %} style="background: green;" {%else%} style="background: #40464e;" {%endif%}>
-        <h1>Tank 2</h1>
+        <h1>Tank 15</h1>
         <p>Saturation = {{data["sat1"]}}%</p>
         <p>Online = {{data["online1"]}}</p>
         <p>Float Alarm = {{data["floatAlarm1"]}}</p>
@@ -37,7 +40,7 @@
         </form>
     </div>
     <div class="tank" {% if data["floatAlarm2"] or data["o2Alarm2"] %} style="background: red;" {%elif data["online2"] == 1 %} style="background: green;" {%else%} style="background: #40464e;" {%endif%}>
-        <h1>Tank 3</h1>
+        <h1>Tank 14</h1>
         <p>Saturation = {{data["sat2"]}}%</p>
         <p>Online = {{data["online2"]}}</p>
         <p>Float Alarm = {{data["floatAlarm2"]}}</p>
@@ -51,7 +54,7 @@
         </form>
     </div>
     <div class="tank" {% if data["floatAlarm3"] or data["o2Alarm3"] %} style="background: red;" {%elif data["online3"] == 1 %} style="background: green;" {%else%} style="background: #40464e;" {%endif%}>
-        <h1>Tank 4</h1>
+        <h1>Tank 13</h1>
         <p>Saturation = {{data["sat3"]}}%</p>
         <p>Online = {{data["online3"]}}</p>
         <p>Float Alarm = {{data["floatAlarm3"]}}</p>
@@ -65,7 +68,7 @@
         </form>
     </div>
     <div class="tank" {% if data["floatAlarm4"] or data["o2Alarm4"] %} style="background: red;" {%elif data["online4"] == 1 %} style="background: green;" {%else%} style="background: #40464e;" {%endif%}>
-        <h1>Tank 5</h1>
+        <h1>Tank 12</h1>
         <p>Saturation = {{data["sat4"]}}%</p>
         <p>Online = {{data["online4"]}}</p>
         <p>Float Alarm = {{data["floatAlarm4"]}}</p>
@@ -79,7 +82,7 @@
         </form>
     </div>
     <div class="tank" {% if data["floatAlarm5"] or data["o2Alarm5"] %} style="background: red;" {%elif data["online5"] == 1 %} style="background: green;" {%else%} style="background: #40464e;" {%endif%}>
-        <h1>Tank 6</h1>
+        <h1>Tank 11</h1>
         <p>Saturation = {{data["sat5"]}}%</p>
         <p>Online = {{data["online5"]}}</p>
         <p>Float Alarm = {{data["floatAlarm5"]}}</p>
@@ -93,7 +96,7 @@
         </form>
     </div>
     <div class="tank" {% if data["floatAlarm6"] or data["o2Alarm6"] %} style="background: red;" {%elif data["online6"] == 1 %} style="background: green;" {%else%} style="background: #40464e;" {%endif%}>
-        <h1>Tank 7</h1>
+        <h1>Tank 10</h1>
         <p>Saturation = {{data["sat6"]}}%</p>
         <p>Online = {{data["online6"]}}</p>
         <p>Float Alarm = {{data["floatAlarm6"]}}</p>
@@ -107,7 +110,7 @@
         </form>
     </div>
     <div class="tank" {% if data["floatAlarm7"] or data["o2Alarm7"] %} style="background: red;" {%elif data["online7"] == 1 %} style="background: green;" {%else%} style="background: #40464e;" {%endif%}>
-        <h1>Tank 8</h1>
+        <h1>Tank 9</h1>
         <p>Saturation = {{data["sat7"]}}%</p>
         <p>Online = {{data["online7"]}}</p>
         <p>Float Alarm = {{data["floatAlarm7"]}}</p>
@@ -121,7 +124,7 @@
         </form>
     </div>
     <div class="tank" {% if data["floatAlarm8"] or data["o2Alarm8"] %} style="background: red;" {%elif data["online8"] == 1 %} style="background: green;" {%else%} style="background: #40464e;" {%endif%}>
-        <h1>Tank 9</h1>
+        <h1>Tank 8</h1>
         <p>Saturation = {{data["sat8"]}}%</p>
         <p>Online = {{data["online8"]}}</p>
         <p>Float Alarm = {{data["floatAlarm8"]}}</p>
@@ -135,7 +138,7 @@
         </form>
     </div>
     <div class="tank" {% if data["floatAlarm9"] or data["o2Alarm9"] %} style="background: red;" {%elif data["online9"] == 1 %} style="background: green;" {%else%} style="background: #40464e;" {%endif%}>
-        <h1>Tank 10</h1>
+        <h1>Tank 7</h1>
         <p>Saturation = {{data["sat9"]}}%</p>
         <p>Online = {{data["online9"]}}</p>
         <p>Float Alarm = {{data["floatAlarm9"]}}</p>
@@ -149,7 +152,7 @@
         </form>
     </div>
     <div class="tank" {% if data["floatAlarm10"] or data["o2Alarm10"] %} style="background: red;" {%elif data["online10"] == 1 %} style="background: green;" {%else%} style="background: #40464e;" {%endif%}>
-        <h1>Tank 11</h1>
+        <h1>Tank 6</h1>
         <p>Saturation = {{data["sat10"]}}%</p>
         <p>Online = {{data["online10"]}}</p>
         <p>Float Alarm = {{data["floatAlarm10"]}}</p>
@@ -163,7 +166,7 @@
         </form>
     </div>
     <div class="tank" {% if data["floatAlarm11"] or data["o2Alarm11"] %} style="background: red;" {%elif data["online11"] == 1 %} style="background: green;" {%else%} style="background: #40464e;" {%endif%}>
-        <h1>Tank 12</h1>
+        <h1>Tank 5</h1>
         <p>Saturation = {{data["sat11"]}}%</p>
         <p>Online = {{data["online11"]}}</p>
         <p>Float Alarm = {{data["floatAlarm11"]}}</p>
@@ -177,7 +180,7 @@
         </form>
     </div>
     <div class="tank" {% if data["floatAlarm12"] or data["o2Alarm12"] %} style="background: red;" {%elif data["online12"] == 1 %} style="background: green;" {%else%} style="background: #40464e;" {%endif%}>
-        <h1>Tank 13</h1>
+        <h1>Tank 4</h1>
         <p>Saturation = {{data["sat12"]}}%</p>
         <p>Online = {{data["online12"]}}</p>
         <p>Float Alarm = {{data["floatAlarm12"]}}</p>
@@ -191,7 +194,7 @@
         </form>
     </div>
     <div class="tank" {% if data["floatAlarm13"] or data["o2Alarm13"] %} style="background: red;" {%elif data["online13"] == 1 %} style="background: green;" {%else%} style="background: #40464e;" {%endif%}>
-        <h1>Tank 14</h1>
+        <h1>Tank 3</h1>
         <p>Saturation = {{data["sat13"]}}%</p>
         <p>Online = {{data["online13"]}}</p>
         <p>Float Alarm = {{data["floatAlarm13"]}}</p>
@@ -205,7 +208,7 @@
         </form>
     </div>
     <div class="tank" {% if data["floatAlarm14"] or data["o2Alarm14"] %} style="background: red;" {%elif data["online14"] == 1 %} style="background: green;" {%else%} style="background: #40464e;" {%endif%}>
-        <h1>Tank 15</h1>
+        <h1>Tank 2</h1>
         <p>Saturation = {{data["sat14"]}}%</p>
         <p>Online = {{data["online14"]}}</p>
         <p>Float Alarm = {{data["floatAlarm14"]}}</p>
@@ -219,7 +222,7 @@
         </form>
     </div>
     <div class="tank" {% if data["floatAlarm15"] or data["o2Alarm15"] %} style="background: red;" {%elif data["online15"] == 1 %} style="background: green;" {%else%} style="background: #40464e;" {%endif%}>
-        <h1>Tank 16</h1>
+        <h1>Tank 1</h1>
         <p>Saturation = {{data["sat15"]}}%</p>
         <p>Online = {{data["online15"]}}</p>
         <p>Float Alarm = {{data["floatAlarm15"]}}</p>
@@ -233,7 +236,7 @@
         </form>
     </div>
     <div class="tank" {% if data["floatAlarm16"] or data["o2Alarm16"] %} style="background: red;" {%elif data["online16"] == 1 %} style="background: green;" {%else%} style="background: #40464e;" {%endif%}>
-        <h1>Tank 17</h1>
+        <h1>Tank 501</h1>
         <p>Saturation = {{data["sat16"]}}%</p>
         <p>Online = {{data["online16"]}}</p>
         <p>Float Alarm = {{data["floatAlarm16"]}}</p>
@@ -247,7 +250,7 @@
         </form>
     </div>
     <div class="tank" {% if data["floatAlarm17"] or data["o2Alarm17"] %} style="background: red;" {%elif data["online17"] == 1 %} style="background: green;" {%else%} style="background: #40464e;" {%endif%}>
-        <h1>Tank 18</h1>
+        <h1>Tank 502</h1>
         <p>Saturation = {{data["sat17"]}}%</p>
         <p>Online = {{data["online17"]}}</p>
         <p>Float Alarm = {{data["floatAlarm17"]}}</p>

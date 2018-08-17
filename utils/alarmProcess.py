@@ -1,5 +1,4 @@
-import serial, sqlite3, re, pygame
-
+import serial, sqlite3, re, pygame, asyncio
 
 ser = None
 # connect to database
@@ -23,6 +22,13 @@ def BEEEEOP():
         continue
     serialConnect()
 
+async def Alarm():
+    pygame.mixer.init()
+    pygame.mixer.music.load("beepBeepLettuce.ogg")
+    pygame.mixer.music.play()
+    while pygame.mixer.music.get_busy() == True:
+        continue
+
 def superConverter(count):
     count = str(count[0])
     numbers = re.compile('\d+(?:\.\d+)?')
@@ -30,6 +36,7 @@ def superConverter(count):
     return(int(count[0]))
 
 def populateDatabase(data):
+    alarmCheck(data)
     tableCount = superConverter(count)
     if(len(data) == tableCount):
         for entry in data:
@@ -78,4 +85,15 @@ def readSerial():
         print("Reading Serial data")
         populateDatabase(data)
 
+
+def alarmCheck(data):
+    alarmData = []
+    for x in range(superConverter(count)):
+        tankData = data[x]
+        alarmData.append(tankData[3])
+        alarmData.append(tankData[4])
+    print(alarmData)
+    if "1" in alarmData:
+        print("alarmStart")
+        asyncio.run(Alarm())
 serialConnect()
