@@ -5,7 +5,7 @@ con = None
 def db_con():
 	try:
 		global con
-		con = sqlite3.connect("data.db")
+		con = sqlite3.connect("../data.db")
 	except:
 		print("Unable to connect to database :'( ")
 		return None
@@ -74,6 +74,7 @@ def populate_db(all_slave_data):
 			global con
 			cursor.execute(sql_entry)
 			con.commit()
+			print("Writing to database succesful")
 		except:
 			print("Insert Failed")
 			return None
@@ -90,4 +91,6 @@ def main():
 		all_slave_data.append(raw_slave_data)
 		time.sleep(1)
 	populate_db(all_slave_data)
-main()
+
+while True:
+	main()
