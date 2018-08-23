@@ -28,7 +28,7 @@ def slave_create(num_slave):
 	try:
 		slaveid_list = []
 		for i in range(2, num_slave + 2):
-			slave_device = minimalmodbus.Instrument('/dev/tty.usbserial-AI05AT5E', i)
+			slave_device = minimalmodbus.Instrument('/dev/serial/by-path/pci-0000:00:14.0-usb-0:12:1.0-port0', i)
 			print("Connecting to slave" + str(i))
 
 			slave_device.serial.baudrate = 9600
@@ -59,6 +59,7 @@ def modbus_read(slave, num_reg):
 		return slave_data
 
 def populate_db(all_slave_data):
+	alarm_list = []
 	for i in all_slave_data:
 		for j in i:
 			#[tank_num, sat, pressure, online, sol_state, o2_alarm, float_alarm]
@@ -69,7 +70,8 @@ def populate_db(all_slave_data):
 			sol_state = str(i[4])
 			o2_alarm = str(i[5])
 			float_alarm = str(i[6])
-
+		alarm_list.append(o2_alarm)
+		alarm_list.append(float_alarm)
 		sql_entry = "INSERT INTO Tank" + tank_num + "Data VALUES(datetime('now', 'localtime'), " + sat + ", " + online + ", " + float_alarm + ", " + o2_alarm + ", " + sol_state.rstrip() + ")"
 		try:
 			global cursor
@@ -79,7 +81,8 @@ def populate_db(all_slave_data):
 			print("Writing to database succesful")
 		except:
 			print("Insert Failed")
-			return None
+			return alarm_list
+	return alarm_list
 
 def main():
 	print("Main Loop")
@@ -93,7 +96,12 @@ def main():
 		raw_slave_data.insert(0, index)
 		all_slave_data.append(raw_slave_data)
 		time.sleep(1)
-	populate_db(all_slave_data)
+	alarm_list = populate_db(all_slave_data)
+	print(alarm_list)
+	if "1" in alarm_list:
+		alarm_lib.set_alarm_flag(True)
+	else:
+		alarm_lib.set_alarm_flag(False)
 
 while True:
 	main()
