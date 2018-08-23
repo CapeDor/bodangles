@@ -1,6 +1,7 @@
-import serial, sqlite3, pygame, re, minimalmodbus, time, sys
+import serial, sqlite3, re, minimalmodbus, time, sys, alarm_lib
 cursor = None
 con = None
+alarm_lib.set_alarm_flag(False)
 
 def db_con():
 	try:
@@ -27,9 +28,7 @@ def slave_create(num_slave):
 	try:
 		slaveid_list = []
 		for i in range(2, num_slave + 2):
-			print("Try to connect")
-			slave_device = minimalmodbus.Instrument('/dev/serial/by-path/pci-0000:00:14.0-usb-0:12:1.0-port0', i)
-
+			slave_device = minimalmodbus.Instrument('/dev/tty.usbserial-AI05AT5E', i)
 			print("Connecting to slave" + str(i))
 
 			slave_device.serial.baudrate = 9600
@@ -44,6 +43,7 @@ def slave_create(num_slave):
 	except OSError as e:
 		print("Unable to connect to modbus: Retrying")
 		print("Error: " + str(e))
+		alarm_lib.set_alarm_flag(True)
 		sys.exit()
 
 def modbus_read(slave, num_reg):

@@ -6,3 +6,4 @@ webServer/__pycache__/
 \.vscode/
 
 o2venv/
+utils/alarm_flag.txt
