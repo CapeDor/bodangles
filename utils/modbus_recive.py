@@ -27,7 +27,7 @@ def slave_create(num_slave):
 	try:
 		slaveid_list = []
 		for i in range(2, num_slave + 2):
-			slave_device = minimalmodbus.Instrument('/dev/tty.usbserial-AI05AT5E', i)
+			slave_device = minimalmodbus.Instrument('/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AI05AT5E-if00-port0', i)
 
 			print("Connecting to slave" + str(i))
 
@@ -40,9 +40,11 @@ def slave_create(num_slave):
 			slave_device.mode = minimalmodbus.MODE_RTU
 			slaveid_list.append(slave_device)
 		return slaveid_list
-	except:
-		print("Unable to connect to modbus")
-		return None
+	except OSError as e:
+		print("Unable to connect to modbus: Retrying")
+		print("Error: " + str(e))
+		time.sleep(5)
+		main()
 
 def modbus_read(slave, num_reg):
 	try:
@@ -80,12 +82,13 @@ def populate_db(all_slave_data):
 			return None
 
 def main():
+	print("Main Loop")
 	table_count = index_table_count(db_con())
 	slaveid_list = slave_create(table_count)
 	all_slave_data = []
 
 	for index in range(table_count):
-		print(slaveid_list[index])
+		print("Reading from slave " + str(index + 2))
 		raw_slave_data = (modbus_read(slaveid_list[index], 6))
 		raw_slave_data.insert(0, index)
 		all_slave_data.append(raw_slave_data)
