@@ -57,6 +57,10 @@ def modbus_read(slave, num_reg):
 		print("Read Failed: " + str(e))
 		slave_data = [0, 0, 0, 0, 0, 0]
 		return slave_data
+	except ValueError as e:
+		print("Read Failed: " + str(e))
+		slave_data = [0, 0, 0, 0, 0, 0]
+		return slave_data
 
 def populate_db(all_slave_data):
 	alarm_list = []

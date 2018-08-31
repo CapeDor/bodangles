@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 # create a global variable for the tank number that defaults to 0
 tankNum = "0"
+tankName = "0"
 # create global variable for the number of tables in the db
 numTables = 18
 
@@ -74,10 +75,12 @@ def beepBeepLettuce():
 # when the user clicks on 'Show Detail'
 @app.route("/", methods=["POST"])
 def sendTank():
-    # get the global tankNum
+    # get the global tankNum and tankName
     global tankNum
+    global tankName
     # set tankNum to the value retreived from the html form
     tankNum = str(request.form["tankNum"])
+    tankName = str(request.form["tankName"])
     # redirect the user to route '/detail'
     return redirect("/detail")
 
@@ -88,13 +91,14 @@ def formPost():
     startDate = str(request.form["startDate"])
     # set the endDate to the date selected from the date form
     endDate = str(request.form["endDate"])
-    # get the global tankNum
+    # get the global tankNum and tankName
     global tankNum
+    global tankName
     # retreive data from table for specified start date, end date, and tank number
     dates, sats, online, floatAlarm, o2Alarm, pressure = getHistData(startDate, endDate, tankNum)
     # set legend to 'Tank x Saturation (%)' where x is the tankNum + 1
     # example string if tankNum were equal to 0: Tank 1 Saturation
-    legend = "Tank " + str(int(tankNum) + 1) + " Saturation (%)"
+    legend = "Tank " + tankName + " Saturation (%)"
     # just reassigning variables for use in the html templating
     labels = dates
     values = sats
@@ -102,7 +106,7 @@ def formPost():
     maxDate = date.today() + timedelta(1)
     # return 'data.html' with access to allllllll the variables
     # any that have a [-1] are a list and only the last element is being returned
-    return render_template("detail.html", online = online, floatAlarm = floatAlarm, o2Alarm = o2Alarm, values = values, labels = labels, legend = legend, tankNum = str(int(tankNum) + 1), startDate = startDate, endDate = endDate, maxDate = maxDate, pressure = pressure)
+    return render_template("detail.html", online = online, floatAlarm = floatAlarm, tankName = tankName, o2Alarm = o2Alarm, values = values, labels = labels, legend = legend, tankNum = str(int(tankNum) + 1), startDate = startDate, endDate = endDate, maxDate = maxDate, pressure = pressure)
 
 # do the same as the previous method but automatically set the start and end date rather then getting them from a form
 @app.route("/detail")
@@ -112,11 +116,12 @@ def detail():
     # set endDate to tomorrow
     endDate = str(date.today() + timedelta(1))
     global tankNum
+    global tankName
     dates, sats, online, floatAlarm, o2Alarm, pressure = getHistData(startDate, endDate, tankNum)
-    legend = "Tank " + str(int(tankNum) + 1) + " Saturation (%)"
+    legend = "Tank " + tankName + " Saturation (%)"
     labels = dates
     values = sats
-    return render_template("detail.html", values = values, labels = labels, legend = legend, tankNum = str(int(tankNum) + 1), maxDate = endDate, startDate = startDate, endDate = endDate, online = online, o2Alarm = o2Alarm, floatAlarm = floatAlarm, pressure = pressure)
+    return render_template("detail.html", values = values, labels = labels, legend = legend, tankName= tankName, tankNum = str(int(tankNum) + 1), maxDate = endDate, startDate = startDate, endDate = endDate, online = online, o2Alarm = o2Alarm, floatAlarm = floatAlarm, pressure = pressure)
 
 if __name__ == "__main__":
     app.run()

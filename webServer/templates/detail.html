@@ -10,7 +10,7 @@
     <meta http-equiv="Expires" content="0" />
 </head>
 
-<h1>Tank {{ tankNum }}</h1>
+<h1>Tank {{ tankName }}</h1>
 <a href="/">Return to overview</a>
 <br>
 <br>
@@ -97,7 +97,7 @@
                 {% endfor %}
             ],
             datasets: [{
-                label: "Tank {{ tankNum }} Float Alarm",
+                label: "Tank {{ tankName }} Float Alarm",
                 cubicInterpolationMode: "monotone",
                 pointBorderColor: "rgba(75, 192, 192, .0)",
                 pointBackgroundColor: "rgba(75, 192, 192, .0)",
@@ -110,7 +110,7 @@
                     {% endfor %}
                 ]},
                 {
-                label: "Tank {{ tankNum }} Oxygen Alarm",
+                label: "Tank {{ tankName }} Oxygen Alarm",
                 cubicInterpolationMode: "monotone",
                 pointBorderColor: "rgba(75, 192, 192, .0)",
                 pointBackgroundColor: "rgba(75, 192, 192, .0)",
