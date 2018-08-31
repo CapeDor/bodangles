@@ -8,3 +8,6 @@ webServer/__pycache__/
 o2venv/
 utils/alarm_flag.txt
 alarm_flag.txt
+.DS_Store
+firmware/.DS_Store
+firmware/Slaves/.DS_Store
