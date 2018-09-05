@@ -57,7 +57,8 @@ select:-webkit-autofill {
    padding-bottom: 1.5rem;
    margin: 1rem;
    text-align: left;
-   min-width: 200px;
+   min-width: 180px;
+   min-height: 10px;
 }
 
 .tank>h1{
@@ -85,4 +86,10 @@ select:-webkit-autofill {
 
 canvas {
     display: inline-block !important;
+}
+
+.container {
+    width: 100%;
+    min-width: 800px;
+    margin: 0 auto;
 }
