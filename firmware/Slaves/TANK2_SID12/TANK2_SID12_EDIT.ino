@@ -6,7 +6,7 @@
 
 #define TxEnablePin 9
 #define   baud 9600
-#define   SlaveID 8
+#define   SlaveID 12
 
 //[oxy_send, press_send, online, sol_state, o2_alarm, float_alarm]
 #define   HOLDING_REGS_SIZE 6
@@ -17,8 +17,9 @@ unsigned int holdingRegs[HOLDING_REGS_SIZE];
 
 const int buttonEnterPin = 24;
 
-const int LED_1 = 2; //online LED
-const int LED_2 = 3; //alarm LED
+const int LED_1 = 3; //alarm LED
+const int LED_2 = 2; //online LED
+
 
 bool sol_state = 0;
 bool float_state = 0;
@@ -29,7 +30,7 @@ void setup() {
   lcd.begin();
   lcd.clear();
   lcd.setCursor(1, 1);
-  lcd.print("Tank:10 SID:");
+  lcd.print("Tank:2 SID:");
   lcd.print(SlaveID);
 
   analogWrite(26, 100);
@@ -55,7 +56,7 @@ void setup() {
   Indio.setADCResolution(16);
   Indio.analogReadMode(1, mA);
 
-  int timer = Watchdog.enable(10000);
+  int timer = Watchdog.enable(3000);
 
   modbus_configure(&Serial, baud, SERIAL_8N2, SlaveID, TxEnablePin, HOLDING_REGS_SIZE, holdingRegs);
   modbus_update_comms(baud, SERIAL_8N2, SlaveID);
@@ -90,43 +91,44 @@ void loop() {
   bool online = !Indio.digitalRead(4);
   float_state = Indio.digitalRead(5);
 
-  if((sat<=80)&&(online == 1)){
-    o2_alarm = 1;
-  }
-  
-  if((sat>=100)&&(online == 1)){
+  if(online == 0){
+    Indio.digitalWrite(LED_1, LOW);
     o2_alarm = 0;
-  }
-  
-  if((float_state == 1)&&(online == 1)){
-    float_alarm = 1;
-  }
-  else{
     float_alarm = 0;
   }
-  
-  if((float_alarm == 1)||(o2_alarm == 1)){
-    sol_state = 1;
-    Indio.digitalWrite(LED_2,HIGH);
-  }
-  else{
-    sol_state = 0;
-    Indio.digitalWrite(LED_2,LOW);
-  }
-
   if(online == 1){
     Indio.digitalWrite(LED_1, HIGH);
-  }
-  else{
-    Indio.digitalWrite(LED_1,LOW);
+    
+    if(sat <= 80){
+      o2_alarm = 1;
     }
+    if(sat >= 85){
+      o2_alarm = 0;
+    }
+    
+    if(float_state == 1){
+      float_alarm = 1;
+    }
+    else{
+      float_alarm = 0;
+    }
+
+    if(sat <= 88){
+      sol_state = 1;
+    }
+    if(sat >= 92){
+      sol_state = 0;
+    }
+  }
 
   if(sol_state == 1){
     Indio.digitalWrite(1, HIGH);
+    Indio.digitalWrite(LED_2, HIGH);
   }
   else{
     Indio.digitalWrite(1,LOW);
-    }
+    Indio.digitalWrite(LED_2, LOW);
+  }
 
 //[oxy_send, press_send, online, sol_state, o2_alarm, float_alarm]
   holdingRegs[0] = oxy_send;

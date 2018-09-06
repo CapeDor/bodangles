@@ -6,7 +6,7 @@
 
 #define TxEnablePin 9
 #define   baud 9600
-#define   SlaveID 11
+#define   SlaveID 19
 
 //[oxy_send, press_send, online, sol_state, o2_alarm, float_alarm]
 #define   HOLDING_REGS_SIZE 6
@@ -30,7 +30,7 @@ void setup() {
   lcd.begin();
   lcd.clear();
   lcd.setCursor(1, 1);
-  lcd.print("Tank:1 SID:");
+  lcd.print("Tank:502 SID:");
   lcd.print(SlaveID);
 
   analogWrite(26, 100);
@@ -91,43 +91,44 @@ void loop() {
   bool online = !Indio.digitalRead(4);
   float_state = Indio.digitalRead(5);
 
-  if((sat<=80)&&(online == 1)){
-    o2_alarm = 1;
-  }
-
-  if((sat>=100)&&(online == 1)){
+  if(online == 0){
+    Indio.digitalWrite(LED_1, LOW);
     o2_alarm = 0;
-  }
-  
-  if((float_state == 1)&&(online == 1)){
-    float_alarm = 1;
-  }
-  else{
     float_alarm = 0;
   }
-  
-  if((float_alarm == 1)||(o2_alarm == 1)){
-    sol_state = 1;
-    Indio.digitalWrite(LED_2,HIGH);
-  }
-  else{
-    sol_state = 0;
-    Indio.digitalWrite(LED_2,LOW);
-  }
-
   if(online == 1){
     Indio.digitalWrite(LED_1, HIGH);
-  }
-  else{
-    Indio.digitalWrite(LED_1,LOW);
+    
+    if(sat <= 80){
+      o2_alarm = 1;
     }
+    if(sat >= 85){
+      o2_alarm = 0;
+    }
+    
+    if(float_state == 1){
+      float_alarm = 1;
+    }
+    else{
+      float_alarm = 0;
+    }
+
+    if(sat <= 88){
+      sol_state = 1;
+    }
+    if(sat >= 92){
+      sol_state = 0;
+    }
+  }
 
   if(sol_state == 1){
     Indio.digitalWrite(1, HIGH);
+    Indio.digitalWrite(LED_2, HIGH);
   }
   else{
     Indio.digitalWrite(1,LOW);
-    }
+    Indio.digitalWrite(LED_2, LOW);
+  }
 
 //[oxy_send, press_send, online, sol_state, o2_alarm, float_alarm]
   holdingRegs[0] = oxy_send;
