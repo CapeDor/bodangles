@@ -112,13 +112,13 @@ void loop() {
     else{
       float_alarm = 0;
     }
+  }
 
-    if(sat <= 88){
-      sol_state = 1;
-    }
-    if(sat >= 92){
-      sol_state = 0;
-    }
+  if(sat <= 88){
+    sol_state = 1;
+  }
+  if(sat >= 92){
+    sol_state = 0;
   }
 
   if(sol_state == 1){
