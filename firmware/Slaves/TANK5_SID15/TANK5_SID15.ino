@@ -121,13 +121,25 @@ void loop() {
     sol_state = 0;
   }
 
-  if(sol_state == 1){
-    Indio.digitalWrite(1, HIGH);
+  if(sat <= 88){
+    sol_state = 1;
+  }
+  if(sat >= 92){
+    sol_state = 0;
+  }
+
+  if(float_alarm == 1 || o2_alarm == 1){
     Indio.digitalWrite(LED_2, HIGH);
   }
   else{
-    Indio.digitalWrite(1,LOW);
     Indio.digitalWrite(LED_2, LOW);
+  }
+
+  if(sol_state == 1){
+    Indio.digitalWrite(1, HIGH);
+  }
+  else{
+    Indio.digitalWrite(1,LOW);
   }
 
 //[oxy_send, press_send, online, sol_state, o2_alarm, float_alarm]
