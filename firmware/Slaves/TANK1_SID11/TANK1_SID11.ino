@@ -115,10 +115,10 @@ void loop() {
     }
   }
 
-  if(sat <= 88){
+  if(sat <= 92){
     sol_state = 1;
   }
-  if(sat >= 92){
+  if(sat >= 97){
     sol_state = 0;
   }
 
