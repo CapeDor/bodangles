@@ -99,10 +99,10 @@ void loop() {
   if(online == 1){
     Indio.digitalWrite(LED_1, HIGH);
     
-    if(sat <= 80){
+    if(sat <= 95){
       o2_alarm = 1;
     }
-    if(sat >= 85){
+    if(sat >= 96){
       o2_alarm = 0;
     }
     
@@ -114,10 +114,10 @@ void loop() {
     }
   }
 
-  if(sat <= 92){
+  if(sat <= 100){
     sol_state = 1;
   }
-  if(sat >= 97){
+  if(sat >= 130){
     sol_state = 0;
   }
 
